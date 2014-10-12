@@ -1,16 +1,30 @@
 module.exports = function(grunt) {
 
+    var config = {
+        appPath: '.'
+    };
+
     grunt.initConfig({
 
+        config: config,
+
         connect: {
-            server: {
+            options: {
+                port: 9000,
+                open: true,
+                livereload: 35729,
+                hostname: 'localhost'
+            },
+
+            livereload: {
                 options: {
-                    port: 9000,
-                    open: true,
-                    hostname: 'localhost'
-                    //    livereload: 35729,
-                    // Change this to '0.0.0.0' to access the server from outside
-                 
+                    middleware: function(connect) {
+                        return [
+                            require('connect-livereload')(),
+                            connect.static(config.appPath)
+
+                        ];
+                    }
                 }
             }
         },
@@ -19,12 +33,15 @@ module.exports = function(grunt) {
             all: ['*.js']
         },
         watch: {
+            options: {
+                livereload: true,
+            },
             scripts: {
                 files: ['*.js'],
                 tasks: ['jshint'],
-                options: {
-                    livereload: true
-                }
+            },
+            html: {
+                files: ['*.html']
             }
         }
     });
