@@ -48,7 +48,7 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.registerTask('serve', function(target) {
+    grunt.registerTask('start', function(target) {
         grunt.task.run([
             'jshint',
             'connect',
