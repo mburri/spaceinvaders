@@ -1,5 +1,7 @@
 module.exports = function(grunt) {
 
+    require('load-grunt-tasks')(grunt);
+
     var config = {
         appPath: '.'
     };
@@ -46,11 +48,6 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-contrib-connect');
-
-    //grunt.registerTask('default', ['jshint', 'serve', 'watch']);
     grunt.registerTask('serve', function(target) {
         grunt.task.run([
             'jshint',
