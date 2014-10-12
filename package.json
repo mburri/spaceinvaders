@@ -18,6 +18,7 @@
     "grunt-serve": "^0.1.6"
   },
   "devDependencies": {
+    "grunt-contrib-connect": "^0.8.0",
     "grunt-contrib-jshint": "^0.10.0",
     "grunt-contrib-watch": "^0.6.1"
   }
