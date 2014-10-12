@@ -34,6 +34,10 @@
             for (var i = this.bodies.length - 1; i >= 0; i--) {
                 drawRect(screen, this.bodies[i]);
             }
+        },
+
+        addBody: function(body) {
+            this.bodies.push(body);
         }
     };
 
@@ -61,8 +65,19 @@
             } else if (this.keyboarder.isDown(this.keyboarder.KEYS.RIGHT)) {
                 this.center.x += 2;
             }
+            if (this.keyboarder.isDown(this.keyboarder.KEYS.SPACE)) {
+                var bullet = new Bullet({
+                    x: this.center.x,
+                    y: this.center.y - this.size.y / 2
+                }, {
+                    x: 0,
+                    y: -6
+                });
+                this.game.addBody(bullet);
+            }
         }
     };
+
 
     var KeyBoarder = function() {
         var keyState = {};
@@ -84,6 +99,19 @@
             RIGHT: 39,
             SPACE: 32
         };
+    };
+
+    var Bullet = function(center, velocity) {
+        this.size = {x: 3, y: 3};
+        this.center = center;
+        this.velocity = velocity;
+    };
+
+    Bullet.prototype = {
+        update: function() {
+            this.center.x += this.velocity.x;
+            this.center.y += this.velocity.y;
+        }
     };
 
     var drawRect = function(screen, body) {
