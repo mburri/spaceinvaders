@@ -15,7 +15,6 @@
         var tick = function() {
             self.update();
             self.draw(screen, gameSize);
-
             requestAnimationFrame(tick);
         };
 
@@ -24,6 +23,15 @@
 
     Game.prototype = {
         update: function() {
+
+            var bodies = this.bodies;
+            var notCollidingWithOtherBody = function(b1) {
+                return bodies.filter(function(b2) {
+                    return colliding(b1, b2);
+                }).length === 0;
+            };
+
+            this.bodies = this.bodies.filter(notCollidingWithOtherBody);
             for (var i = this.bodies.length - 1; i >= 0; i--) {
                 this.bodies[i].update();
             }
@@ -68,7 +76,7 @@
             if (this.keyboarder.isDown(this.keyboarder.KEYS.SPACE)) {
                 var bullet = new Bullet({
                     x: this.center.x,
-                    y: this.center.y - this.size.y / 2
+                    y: this.center.y - this.size.y
                 }, {
                     x: 0,
                     y: -6
@@ -156,6 +164,15 @@
         screen.fillRect(body.center.x - body.size.x / 2,
             body.center.y - body.size.y / 2,
             body.size.x, body.size.y);
+    };
+
+    var colliding = function(body1, body2) {
+        return !(body1 === body2 ||
+            body1.center.x + body1.size.x / 2 < body2.center.x - body2.size.x / 2 ||
+            body1.center.x - body1.size.x / 2 > body2.center.x + body2.size.x / 2 ||
+            body1.center.y + body1.size.y / 2 < body2.center.y - body2.size.y / 2 ||
+            body1.center.y - body1.size.y / 2 > body2.center.y + body2.size.y / 2
+        );
     };
 
     window.onload = function() {
