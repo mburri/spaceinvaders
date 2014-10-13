@@ -3,7 +3,7 @@ module.exports = function(grunt) {
     require('load-grunt-tasks')(grunt);
 
     var config = {
-        appPath: '.'
+        appPath: 'app/'
     };
 
     grunt.initConfig({
@@ -32,18 +32,21 @@ module.exports = function(grunt) {
         },
 
         jshint: {
-            all: ['*.js']
+            all: ['Gruntfile.js', 'app/js/*.js']
         },
         watch: {
             options: {
                 livereload: true,
             },
             scripts: {
-                files: ['*.js'],
+                files: ['app/js/*.js'],
                 tasks: ['jshint'],
             },
             html: {
-                files: ['*.html']
+                files: ['app/*.html']
+            },
+            css: {
+                files: ['app/css/*.css']
             }
         }
     });
