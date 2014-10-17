@@ -1,6 +1,6 @@
-var exports = exports || {};
+var Game = Game || {};
 
-(function(KeyBoarder, Invader, Player, Bullet) {
+(function(KeyBoarder, Invader, Player, Bullet, Sound) {
     'use strict';
 
     var Game = function(canvasId) {
@@ -13,8 +13,8 @@ var exports = exports || {};
 
         this.bodies = createInvaders(this).concat([new Player(this, gameSize, new KeyBoarder())]);
         var self = this;
-        loadSound("assets/sounds/shoot.wav", function(shootSound) {
-            self.shootSound = shootSound;
+
+        this.shootSound = Sound.loadFromFile(Sound.SOUND_ASSETS.SHOOT);
            
             var tick = function() {
                 self.update();
@@ -23,7 +23,6 @@ var exports = exports || {};
             };
 
             tick();
-        });
     };
 
     Game.prototype = {
@@ -90,18 +89,8 @@ var exports = exports || {};
         );
     };
 
-    var loadSound = function(url, callback) {
-        var loaded = function() {
-            callback(sound);
-            sound.removeEventListener('canplaythrough', loaded);
-        };
-        var sound = new Audio(url);
-        sound.addEventListener('canplaythrough', loaded);
-        sound.load();
-    };
-
     window.onload = function() {
         new Game("screen");
     };
 
-})(Game.KeyBoarder, Game.Invader, Game.Player, Game.Bullet);
+})(Game.KeyBoarder, Game.Invader, Game.Player, Game.Bullet, Game.Sound);

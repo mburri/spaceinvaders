@@ -35,6 +35,7 @@ Game.Player = function(Bullet) {
                     x: 0,
                     y: -6
                 });
+
                 this.game.addBody(bullet);
                 this.game.shootSound.load();
                 this.game.shootSound.play();
