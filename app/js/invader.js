@@ -1,6 +1,6 @@
- var exports = exports || {};
+var Game = Game || {};
 
- (function(exports, Bullet) {
+Game.Invader = function(Bullet) {
 
      var Invader = function(game, center) {
          this.game = game;
@@ -35,6 +35,6 @@
          }
      };
 
-     exports.Invader = Invader;
+     return Invader;
 
- })(exports, exports.Bullet);
+ }(Game.Bullet);

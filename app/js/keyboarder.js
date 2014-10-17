@@ -1,6 +1,6 @@
- var exports = exports || {};
+var Game = Game || {};
 
- (function(exports) {
+ Game.KeyBoarder = function(exports) {
      var KeyBoarder = function() {
          var keyState = {};
 
@@ -23,5 +23,5 @@
          };
      };
 
-     exports.KeyBoarder = KeyBoarder;
- })(exports);
+     return KeyBoarder;
+ }();

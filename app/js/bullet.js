@@ -1,5 +1,7 @@
-var exports = exports || {};
-(function(exports) {
+var Game = Game || {};
+
+Game.Bullet = function() {
+
     var Bullet = function(center, velocity) {
         this.size = {
             x: 3,
@@ -16,5 +18,5 @@ var exports = exports || {};
         }
     };
 
-    exports.Bullet = Bullet;
-})(exports);
+    return Bullet;
+}();

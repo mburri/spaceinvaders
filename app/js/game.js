@@ -104,4 +104,4 @@ var exports = exports || {};
         new Game("screen");
     };
 
-})(exports.KeyBoarder, exports.Invader, exports.Player, exports.Bullet);
+})(Game.KeyBoarder, Game.Invader, Game.Player, Game.Bullet);

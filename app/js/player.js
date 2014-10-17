@@ -1,6 +1,7 @@
-var exports = exports || {};
 
-(function(exports, Bullet) {
+var Game = Game || {};
+
+Game.Player = function(Bullet) {
 
     var Player = function(game, gameSize, keyboarder) {
         this.game = game;
@@ -41,5 +42,5 @@ var exports = exports || {};
         }
     };
 
-    exports.Player = Player;
-})(exports, exports.Bullet);
+   return Player;
+}(Game.Bullet);
